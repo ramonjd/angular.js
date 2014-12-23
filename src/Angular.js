@@ -45,6 +45,7 @@
   isWindow: true,
   isScope: true,
   isFile: true,
+  isFormData: true,
   isBlob: true,
   isBoolean: true,
   isPromiseLike: true,
@@ -563,6 +564,11 @@ function isScope(obj) {
 
 function isFile(obj) {
   return toString.call(obj) === '[object File]';
+}
+
+
+function isFormData(obj) {
+  return toString.call(obj) === '[object FormData]';
 }
 
 
@@ -1428,7 +1434,12 @@ function reloadWithDebugInfo() {
  * @param {DOMElement} element DOM element which is the root of angular application.
  */
 function getTestability(rootElement) {
-  return angular.element(rootElement).injector().get('$$testability');
+  var injector = angular.element(rootElement).injector();
+  if (!injector) {
+    throw ngMinErr('test',
+      'no injector found for element argument to getTestability');
+  }
+  return injector.get('$$testability');
 }
 
 var SNAKE_CASE_REGEXP = /[A-Z]/g;

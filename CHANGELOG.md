@@ -1,3 +1,102 @@
+<a name="1.3.8"></a>
+# 1.3.8 prophetic-narwhal (2014-12-19)
+
+
+## Bug Fixes
+- **filterFilter:**
+  - make `$` match properties on deeper levels as well
+  ([bd28c74c](https://github.com/angular/angular.js/commit/bd28c74c1d91c477a86f10fe36576cba0249e6ef),
+   [#10401](https://github.com/angular/angular.js/issues/10401))
+  - let expression object `{$: '...'}` also match primitive items
+  ([fb2c5858](https://github.com/angular/angular.js/commit/fb2c58589758744c0eef8c2ead3dbcf27a5cf200),
+   [#10428](https://github.com/angular/angular.js/issues/10428))
+- **ngAria:** trigger digest on `ng-click` via keypress, pass `$event` to expression
+  ([924e68c7](https://github.com/angular/angular.js/commit/924e68c7d522a1086969f3583d0ce87e59110bc5),
+   [#10442](https://github.com/angular/angular.js/issues/10442), [#10443](https://github.com/angular/angular.js/issues/10443), [#10447](https://github.com/angular/angular.js/issues/10447))
+- **orderBy:** compare timestamps when sorting date objects
+  ([661f6d9e](https://github.com/angular/angular.js/commit/661f6d9ecf1459ce3b2794c3cde373e17ae83972),
+   [#10512](https://github.com/angular/angular.js/issues/10512), [#10516](https://github.com/angular/angular.js/issues/10516))
+
+
+## Performance Improvements
+
+- **limitTo:** replace for loop with slice
+  ([cd77c089](https://github.com/angular/angular.js/commit/cd77c089ba2f4b94ccc74f32f0ffa9fb70851c02))
+
+
+
+
+<a name="1.3.7"></a>
+# 1.3.7 leaky-obstruction (2014-12-15)
+
+
+## Bug Fixes
+
+- **$compile:** use `createMap()` for `$$observe` listeners when initialized from attr interpolation
+  ([8e28bb4c](https://github.com/angular/angular.js/commit/8e28bb4c2f6d015dfe1cec7755f1ca9b0ecef1f8))
+- **$http:**
+  - only parse as JSON when opening/closing brackets match
+  ([b9bdbe61](https://github.com/angular/angular.js/commit/b9bdbe615cc4070d2233ff06830a4c6fb1217cda),
+   [#10349](https://github.com/angular/angular.js/issues/10349), [#10357](https://github.com/angular/angular.js/issues/10357))
+  - don't convert FormData objects to JSON
+  ([40258838](https://github.com/angular/angular.js/commit/40258838031604feecb862afdc6f1f503d80ce4a),
+   [#10373](https://github.com/angular/angular.js/issues/10373))
+- **$parse:** a chain of field accessors should use a single `getterFn`
+  ([c90ad968](https://github.com/angular/angular.js/commit/c90ad96808be350526516626205c3a7d1da79024))
+- **ngRepeat:** allow extra whitespaces in `(key,value)` part of micro-syntax
+  ([ef640cbc](https://github.com/angular/angular.js/commit/ef640cbc2af5794c987e75472c12e63a59590044),
+   [#6827](https://github.com/angular/angular.js/issues/6827), [#6833](https://github.com/angular/angular.js/issues/6833))
+- **orderBy:** do not try to call `valueOf`/`toString` on `null`
+  ([a097aa95](https://github.com/angular/angular.js/commit/a097aa95b7c78beab6d1b7d521c25f7d9d7843d9),
+   [#10385](https://github.com/angular/angular.js/issues/10385), [#10386](https://github.com/angular/angular.js/issues/10386))
+
+
+## Features
+
+- **$compile:** add support for `ng-attr` with camelCased attributes
+  ([d8e37078](https://github.com/angular/angular.js/commit/d8e37078600089839f82f0e84022f1087e1fd3f2),
+   [#9845](https://github.com/angular/angular.js/issues/9845), [#10194](https://github.com/angular/angular.js/issues/10194))
+- **$http:** pass response status code to data transform functions
+  ([1b740974](https://github.com/angular/angular.js/commit/1b740974f5eb373bed04071d51f908ced7c5a8e5),
+   [#10324](https://github.com/angular/angular.js/issues/10324), [#6734](https://github.com/angular/angular.js/issues/6734), [#10440](https://github.com/angular/angular.js/issues/10440))
+- **$rootScope:** allow passing `locals` argument to `$evalAsync`
+  ([9b96cea4](https://github.com/angular/angular.js/commit/9b96cea462676d123e1b2dd852aedbe3da8fa4a0),
+   [#10390](https://github.com/angular/angular.js/issues/10390))
+
+
+## Performance Improvements
+
+- **$compile:** only re-`$interpolate` attribute values at link time if changed since compile
+  ([9ae0c01c](https://github.com/angular/angular.js/commit/9ae0c01c2bcaff2f3906eec574f9c6ed8abde14a))
+
+
+## Breaking Changes
+
+- **orderBy:** due to [a097aa95](https://github.com/angular/angular.js/commit/a097aa95b7c78beab6d1b7d521c25f7d9d7843d9),
+
+Previously, if either value being compared in the orderBy comparator was null or undefined, the
+order would, incorrectly, not change. Now, this order behaves more like Array.prototype.sort, which
+by default pushes `null` behind objects, due to `n` occurring after `[` (the first characters of their
+stringified forms) in ASCII / Unicode. If `toString` is customized, or does not exist, the
+behaviour is undefined.
+
+
+
+<a name="1.2.28"></a>
+# 1.2.28 finnish-disembarkation (2014-12-15)
+
+
+## Bug Fixes
+
+- **$route:** fix redirection with optional/eager params
+  ([1b9e408d](https://github.com/angular/angular.js/commit/1b9e408ddbe48a6d3db27f501515d6efad01f42d),
+   [#9742](https://github.com/angular/angular.js/issues/9742), [#10202](https://github.com/angular/angular.js/issues/10202))
+- **linky:** encode double quotes when serializing email addresses
+  ([929dd15b](https://github.com/angular/angular.js/commit/929dd15b9b65034350f18abe6c56a8d956f4b978),
+   [#8945](https://github.com/angular/angular.js/issues/8945), [#8964](https://github.com/angular/angular.js/issues/8964), [#5946](https://github.com/angular/angular.js/issues/5946), [#10090](https://github.com/angular/angular.js/issues/10090), [#9256](https://github.com/angular/angular.js/issues/9256))
+
+
+
 <a name="1.3.6"></a>
 # 1.3.6 robofunky-danceblaster (2014-12-08)
 
@@ -17,7 +116,7 @@
   - strip off empty hash segments when comparing
   ([e93710fe](https://github.com/angular/angular.js/commit/e93710fe0e4fb05ceee59a04f290692a5bec5d20),
    [#9635](https://github.com/angular/angular.js/issues/9635))
-- **$parse:** 
+- **$parse:**
   - fix operators associativity
   ([ed1243ff](https://github.com/angular/angular.js/commit/ed1243ffc7c2cb4bd5b4dece597597db8eb08e34))
   - follow JavaScript context for unbound functions
@@ -81,7 +180,7 @@
 ## Breaking Changes
 
 - **$location:** due to [2dc34a96](https://github.com/angular/angular.js/commit/2dc34a969956eea680be4c8d9f800556d110996a),
- 
+
 
 We no longer throw an `ihshprfx` error if the URL after the base path
 contains only a hash fragment.  Previously, if the base URL was `http://abc.com/base/`
@@ -94,6 +193,34 @@ This should not break any applications, but you can no longer rely on receiving 
 to what currently happens for invalid extra paths anyway:  If the base URL
 and hashPrfix are set up as above, then `http://abc.com/base/other/path` does not
 throw an error but just ignores the extra path: `http://abc.com/base`.
+
+
+- **filterFilter:** due to [a75537d4](https://github.com/angular/angular.js/commit/a75537d461c92e3455e372ff5005bf0cad2d2e95),
+
+  Named properties in the expression object will only match against properties on the **same level**.
+  Previously, named string properties would match against properties on the same level **or deeper**.
+
+    Before:
+
+    ```js
+    arr = filterFilter([{level1: {level2: 'test'}}], {level1: 'test'});   // arr.length -> 1
+    ```
+
+    After:
+
+    ```js
+    arr = filterFilter([{level1: {level2: 'test'}}], {level1: 'test'});   // arr.length -> 0
+    ```
+
+    In order to match deeper nested properties, you have to either match the depth level of the
+    property or use the special `$` key (which still matches properties on the same level
+    **or deeper**). E.g.:
+
+    ```js
+    // Both examples below have `arr.length === 1`
+    arr = filterFilter([{level1: {level2: 'test'}}], {level1: {level2: 'test'}});
+    arr = filterFilter([{level1: {level2: 'test'}}], {$: 'test'});
+    ```
 
 
 <a name="1.3.5"></a>

@@ -227,6 +227,10 @@ module.exports = function(grunt) {
       "promises-aplus-adapter": {
         dest:'tmp/promises-aplus-adapter++.js',
         src:['src/ng/q.js','lib/promises-aplus/promises-aplus-test-adapter.js']
+      },
+      angularie8: {
+        dest: 'build/ie8/angular.js',
+        src: ['src/ie8/ie8.js', 'build/angular.js'],
       }
     },
 
@@ -241,7 +245,8 @@ module.exports = function(grunt) {
       resource: 'build/angular-resource.js',
       route: 'build/angular-route.js',
       sanitize: 'build/angular-sanitize.js',
-      aria: 'build/angular-aria.js'
+      aria: 'build/angular-aria.js',
+      angularie8: 'build/ie8/angular.js',
     },
 
 
@@ -310,7 +315,6 @@ module.exports = function(grunt) {
       }
     }
   });
-
 
   //alias tasks
   grunt.registerTask('test', 'Run unit, docs and e2e tests with Karma', ['jshint', 'jscs', 'package','test:unit','test:promises-aplus', 'tests:docs', 'test:protractor']);

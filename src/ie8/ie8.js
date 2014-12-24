@@ -1,5 +1,6 @@
-!(function () {
-  'use strict';
+// Polyfills for AngularJS 1.3
+
+(function () {
 
   // detect IE8 one way or another
   /*one way
@@ -75,9 +76,6 @@
   // https://gist.github.com/jonathantneal/3748027
   !window.addEventListener && (function (WindowPrototype, DocumentPrototype, ElementPrototype, addEventListener, removeEventListener, dispatchEvent, registry) {
     WindowPrototype[addEventListener] = DocumentPrototype[addEventListener] = ElementPrototype[addEventListener] = function (type, listener) {
-      if (!arguments.caller) {
-        return;
-      }
       var target = this;
       registry.unshift([target, type, listener,
     function (event) {

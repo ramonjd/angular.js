@@ -8,3 +8,9 @@
 
 <select ng-model="model.selected" ng-options="o.value as o.label for o in options"></select> <button ng-click="addOption()">Add option</button>
 {{model.selected}}
+
+<p>
+  <strong>One time binding</strong>
+  <br>&quot;::name&quot;: {{::name}}, &quot;name&quot;: {{name}}
+  <button ng-click="updateName()">Update name</button>
+</p>

@@ -1,6 +1,8 @@
 (function () {
 	'use strict';
 
+    console.clear();
+
 	angular.module('ie8Test', [
 		'ie8Test.home',
 		'ie8Test.about',
@@ -31,7 +33,7 @@
 			console.log('$routeChangeStart');
 		});
 
-		// test jquery ajax to check if monkey patch breaks it	
+		// test jquery ajax to check if monkey patch breaks it
 		var jqxhr = $.ajax('data.json')
 			.done(function (data) {
 				console.log('jquery: ' + JSON.stringify(data));

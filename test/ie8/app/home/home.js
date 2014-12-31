@@ -2,6 +2,12 @@ angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope) {
 
 	$scope.message = 'This is the home view';
 
+    $scope.name = 'Foo';
+
+    $scope.updateName = function(){
+      $scope.name =  $scope.name + Math.random();
+    };
+
 	var people = [
 		{
 			name: 'Joe',

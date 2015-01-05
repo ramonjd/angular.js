@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-    console.clear();
+	console.clear();
 
 	angular.module('ie8Test', [
 		'ie8Test.home',
@@ -25,8 +25,14 @@
 
 	.run(function ($rootScope, $http, config) {
 
+		console.log('should get data');
 		$http.get('data.json').then(function (d) {
-			console.log('$http: ' + JSON.stringify(d.data))
+			console.log('$http.get OK: ' + JSON.stringify(d.data))
+		});
+
+		console.log('should get jsonp');
+		$http.jsonp('https://librivox.org/api/feed/audiobooks/author/Melville?format=jsonp&callback=JSON_CALLBACK').then(function (d) {
+			console.log('$http.jsonp OK: ' + d.data.books.length + ' results');
 		});
 
 		$rootScope.$on('$routeChangeStart', function (event, next, current) {

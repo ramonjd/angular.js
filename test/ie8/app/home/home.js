@@ -1,52 +1,63 @@
 angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope) {
 
-	$scope.message = 'This is the home view';
+  $scope.message = 'This is the home view';
 
-    $scope.name = 'Foo';
+  $scope.name = 'Foo';
 
-    $scope.updateName = function(){
-      $scope.name =  $scope.name + Math.random();
-    };
+  $scope.updateName = function () {
+    $scope.name = $scope.name + Math.random();
+  };
 
-	var people = [
-		{
-			name: 'Joe',
-			age: 20
-		},
-		{
-			name: 'Jane',
-			age: 27
-		},
-		{
-			name: 'Mick',
-			age: 32
-		}
-	]
+  $scope.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-	// test copy
-	$scope.people = angular.copy(people);
+  var people = [
+    {
+      name: 'Joe',
+      age: 20
+  },
+    {
+      name: 'Jane',
+      age: 27
+  },
+    {
+      name: 'Mick',
+      age: 32
+  }
+ ]
 
-	// test extend
-	angular.extend($scope, {
+  // test copy
+  $scope.people = angular.copy(people);
 
-		options: [
-			{ label: 'Item 1', value: 1 },
-			{ label: 'Item 2', value: 2 },
-			{ label: 'Item 3', value: 3 }
-		],
+  // test extend
+  angular.extend($scope, {
 
-		model: {},
+    options: [
+      {
+        label: 'Item 1',
+        value: 1
+      },
+      {
+        label: 'Item 2',
+        value: 2
+      },
+      {
+        label: 'Item 3',
+        value: 3
+      }
+  ],
 
-		addOption: function () {
+    model: {},
 
-			var i = $scope.options[$scope.options.length - 1].value + 1;
+    addOption: function () {
 
-			$scope.options.push({
-				label: 'Item ' + i,
-				value: i
-			});
-		}
+      var i = $scope.options[$scope.options.length - 1].value + 1;
 
-	});
+      $scope.options.push({
+        label: 'Item ' + i,
+        value: i
+      });
+    }
+
+  });
 
 });

@@ -1,12 +1,13 @@
 <div>
-	{{message}}
+  {{message}}
 </div>
 
 <ul>
-	<li ng-repeat="person in people">{{person.name}}</li>
+  <li ng-repeat="person in people">{{person.name}}</li>
 </ul>
 
-<select ng-model="model.selected" ng-options="o.value as o.label for o in options"></select> <button ng-click="addOption()">Add option</button>
+<select ng-model="model.selected" ng-options="o.value as o.label for o in options"></select>
+<button ng-click="addOption()">Add option</button>
 {{model.selected}}
 
 <p>

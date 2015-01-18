@@ -9,6 +9,20 @@ angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope) {
   };
 
   $scope.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  $scope.letters = "abcdefghi";
+  $scope.longNumber = 2345432342;
+  $scope.numLimit = 3;
+  $scope.letterLimit = 3;
+  $scope.longNumberLimit = 3;
+
+    $scope.colors = [
+      {name:'black', shade:'dark'},
+      {name:'white', shade:'light'},
+      {name:'red', shade:'dark'},
+      {name:'blue', shade:'dark'},
+      {name:'yellow', shade:'light'}
+    ];
+    $scope.myColor = $scope.colors[2]; // red
 
   var people = [
     {

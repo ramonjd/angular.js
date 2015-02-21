@@ -45,4 +45,15 @@ angular.module('ie8Test.directives', [])
   };
 })
 
+.directive('dirD', function () {
+  return {
+    restrict: 'EAC',
+    scope: {},
+    templateUrl: 'app/directives/tmpl.html',
+    link: function (scope, elm, attrs) {
+      scope.foo = 'foo';
+    }
+  };
+})
+
 ;

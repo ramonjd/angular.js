@@ -1,4 +1,4 @@
-angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope) {
+angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope, $filter) {
 
   $scope.message = 'This is the home view';
 
@@ -15,32 +15,47 @@ angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope) {
   $scope.letterLimit = 3;
   $scope.longNumberLimit = 3;
 
-    $scope.colors = [
-      {name:'black', shade:'dark'},
-      {name:'white', shade:'light'},
-      {name:'red', shade:'dark'},
-      {name:'blue', shade:'dark'},
-      {name:'yellow', shade:'light'}
-    ];
-    $scope.myColor = $scope.colors[2]; // red
-
-  var people = [
+  $scope.colors = [{
+      name: 'black',
+      shade: 'dark'
+    },
     {
+      name: 'white',
+      shade: 'light'
+    },
+    {
+      name: 'red',
+      shade: 'dark'
+    },
+    {
+      name: 'blue',
+      shade: 'dark'
+    },
+    {
+      name: 'yellow',
+      shade: 'light'
+  }];
+
+  $scope.myColor = $scope.colors[2]; // red
+
+  var people = [{
       name: 'Joe',
       age: 20
-  },
+    },
     {
       name: 'Jane',
       age: 27
-  },
+    },
     {
       name: 'Mick',
       age: 32
-  }
- ]
+  }];
 
   // test copy
   $scope.people = angular.copy(people);
+  angular.copy({foo:'bar'});
+  angular.copy('foo');
+  angular.copy(new Date());
 
   // test extend
   angular.extend($scope, {
@@ -58,7 +73,7 @@ angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope) {
         label: 'Item 3',
         value: 3
       }
-  ],
+    ],
 
     model: {},
 
@@ -73,5 +88,9 @@ angular.module('ie8Test.home', []).controller('homeCtrl', function ($scope) {
     }
 
   });
+
+  // test date filter
+  var date = $filter('date')(new Date(Date.UTC(2003, 8, 10, 3, 2, 4)), 'yyyy-MM-dd HH-mm-ssZ', 'GMT+0500');
+  console.log(date);
 
 });

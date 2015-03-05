@@ -69,6 +69,30 @@
     .otherwise({
       redirectTo: '/home'
     });
+  })
+
+  .animation('.js-show-animation', function () {
+    return {
+      beforeAddClass: function (element, className, done) {
+        if (className === 'ng-hide') {
+          element.animate({
+            opacity: 0
+          }, 1000, done);
+        } else {
+          done();
+        }
+      },
+      removeClass: function (element, className, done) {
+        if (className === 'ng-hide') {
+          element.css('opacity', 0);
+          element.animate({
+            opacity: 1
+          }, 1000, done);
+        } else {
+          done();
+        }
+      }
+    };
   });
 
 }());

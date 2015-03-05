@@ -230,7 +230,7 @@ module.exports = function(grunt) {
       },
       angularie8: {
         dest: 'build/ie8/angular.js',
-        src: ['src/ie8/ie8.js', 'build/angular.js'],
+        src: ['src/ie8/ie8.js', 'build/angular.js', 'src/ie8/style.js'],
       }
     },
 

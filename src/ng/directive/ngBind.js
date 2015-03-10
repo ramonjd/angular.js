@@ -58,9 +58,8 @@ var ngBindDirective = ['$compile', function($compile) {
       $compile.$$addBindingClass(templateElement);
       return function ngBindLink(scope, element, attr) {
         $compile.$$addBindingInfo(element, attr.ngBind);
-        element = element[0];
         scope.$watch(attr.ngBind, function ngBindWatchAction(value) {
-          element.textContent = value === undefined ? '' : value;
+            element.text(value == undefined ? '' : value);
         });
       };
     }
@@ -126,9 +125,8 @@ var ngBindTemplateDirective = ['$interpolate', '$compile', function($interpolate
       return function ngBindTemplateLink(scope, element, attr) {
         var interpolateFn = $interpolate(element.attr(attr.$attr.ngBindTemplate));
         $compile.$$addBindingInfo(element, interpolateFn.expressions);
-        element = element[0];
         attr.$observe('ngBindTemplate', function(value) {
-          element.textContent = value === undefined ? '' : value;
+            element.text(value);
         });
       };
     }

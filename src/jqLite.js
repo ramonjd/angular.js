@@ -622,18 +622,29 @@ forEach({
     }
   },
 
-  text: (function() {
-    getText.$dv = '';
-    return getText;
+    text: (function () {
+        var NODE_TYPE_TEXT_PROPERTY = [];
+        if (msie < 9) {
+            NODE_TYPE_TEXT_PROPERTY[1] = 'innerText';
+            /** Element **/
+            NODE_TYPE_TEXT_PROPERTY[3] = 'nodeValue';
+            /** Text **/
+        } else {
+            NODE_TYPE_TEXT_PROPERTY[1] = /** Element **/
+                NODE_TYPE_TEXT_PROPERTY[3] = 'textContent';
+            /** Text **/
+        }
+        getText.$dv = '';
+        return getText;
 
-    function getText(element, value) {
-      if (isUndefined(value)) {
-        var nodeType = element.nodeType;
-        return (nodeType === NODE_TYPE_ELEMENT || nodeType === NODE_TYPE_TEXT) ? element.textContent : '';
-      }
-      element.textContent = value;
-    }
-  })(),
+        function getText(element, value) {
+            var textProp = NODE_TYPE_TEXT_PROPERTY[element.nodeType];
+            if (isUndefined(value)) {
+                return textProp ? element[textProp] : '';
+            }
+            element[textProp] = value;
+        }
+    })(),
 
   val: function(element, value) {
     if (isUndefined(value)) {
